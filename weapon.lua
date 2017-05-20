@@ -7,7 +7,7 @@ Weapon = class("Weapon")
 function Weapon:initialize(reloadTime, fireRate, weight, projectileSpeed, damage, magazine)
   self.fireRate = fireRate or 0.2
   self.weight = weight or 100
-  self.projectileSpeed = projectileSpeed or 700
+  self.projectileSpeed = projectileSpeed or 300
   self.damage = damage or 1
   self.magazine = magazine or Magazine:new()
   self.reloadTime = reloadTime or 2
