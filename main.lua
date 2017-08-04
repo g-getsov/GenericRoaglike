@@ -1,12 +1,18 @@
 local directions = require "directions"
 local Hero = require "hero"
 local Map = require "map"
+local gamera = require "gamera"
 
 function love.load(arg)
 
   if arg and arg[#arg] == "-debug" then
     require("mobdebug").start()
   end
+
+  local WINDOW_WIDTH = 1280
+  local WINDOW_HEIGHT = 800
+
+  love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT)
 
   math.randomseed(os.time())
 
@@ -63,14 +69,20 @@ function love.load(arg)
     directions.down
   )
 
+  cam = gamera.new(0,0, WINDOW_WIDTH, WINDOW_HEIGHT)
+  cam:setWindow(0,0, WINDOW_WIDTH, WINDOW_HEIGHT)
+  cam:setScale(1.0)
+
 end
 
 function love.draw()
-  map:draw()
-  hero:draw()
-  for i,v in ipairs(hero.shots) do
-    v:draw()
-  end
+    cam:draw(function()
+        map:draw()
+        hero:draw()
+        for i,v in ipairs(hero.shots) do
+            v:draw()
+        end
+    end)
 end
 
 function love.update(deltaTime)

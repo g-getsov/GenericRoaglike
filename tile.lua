@@ -11,15 +11,21 @@ function Tile:initialize(x, y, size, solid)
 end
 
 function Tile:draw(xOffset, yOffset)
-  local x = self.x * self.width - xOffset
-  local y = self.y * self.height - yOffset
+  local x = self:getX() - xOffset
+  local y = self:getY() - yOffset
   if(self.solid) then
-    love.graphics.setColor(255,0,0,100)
+    love.graphics.setColor(255,0,0,255)
   else
-    love.graphics.setColor(0,255,0,100)
+    love.graphics.setColor(0,255,0,30)
   end
   love.graphics.rectangle("line",x, y, self.width, self.height)
-  love.graphics.print(self.x ..",".. self.y, x, y)
 end
+
+function Tile:getX() return self.x * self.width end
+function Tile:getY() return self.y * self.height end
+function Tile:getXUnitPosition() return self.x end
+function Tile:getYUnitPosition() return self.y end
+function Tile:getWidth() return self.width end
+function Tile:getHeight() return self.height end
 
 return Tile
