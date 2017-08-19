@@ -18,6 +18,10 @@ function Projectile:interact(obj)
   obj.health = obj.health - self.damage
 end
 
+function Projectile:getWidth() return self.radius end
+
+function Projectile:getHeight() return self.radius end
+
 function Projectile:draw()
   love.graphics.circle("fill", self.x - Map.worldOffsetX, self.y - Map.worldOffsetY, self.radius)
   love.graphics.setColor(255,0,0,255)

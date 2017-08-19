@@ -95,5 +95,11 @@ function updateEntityPosition(entities, deltaTime)
   for i,entity in ipairs(entities) do
     entity.x = entity.x + (entity.dx * deltaTime)
     entity.y = entity.y + (entity.dy * deltaTime)
+    
+    local xColision, yColision = Map:checkCollisionWithWorld(entity.x, entity.y, entity:getWidth(), entity:getHeight())
+
+    if(xColision == true or yColision == true) then 
+      table.remove(entities, i)
+    end
   end
 end
